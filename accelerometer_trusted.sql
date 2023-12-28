@@ -13,5 +13,5 @@ WITH SERDEPROPERTIES (
   'mapping' = 'TRUE'
 )
 STORED AS INPUTFORMAT 'org.apache.hadoop.mapred.TextInputFormat' OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
-LOCATION 's3://017747176708-udacity-project3-s3/customer/trusted/'
+LOCATION 's3://017747176708-udacity-project3-s3/accelerometer/trusted/'
 TBLPROPERTIES ('classification' = 'json');
