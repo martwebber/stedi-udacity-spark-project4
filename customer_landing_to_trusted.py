@@ -36,13 +36,17 @@ PrivacyFilter_node1703687163817 = Filter.apply(
 AmazonS3_node1703688387453 = glueContext.write_dynamic_frame.from_options(
     frame=PrivacyFilter_node1703687163817,
     connection_type="s3",
-    format="json",
-    connection_options={
-        "path": "s3://017747176708-udacity-project3-s3/customer/trusted/",
-        "compression": "gzip",
-        "partitionKeys": [],
-    },
+    updateBehavior="UPDATE_IN_DATABASE",
+    partitionKeys=[],
+    compression="gzip",
+    enableUpdateCatalog=True,
     transformation_ctx="AmazonS3_node1703688387453",
 )
+
+AmazonS3_node1703688387453.setCatalogInfo(
+    catalogDatabase="stedi", catalogTableName="customer_trusted                "
+)
+AmazonS3_node1703688387453.setFormat("json")
+AmazonS3_node1703688387453.writeFrame(PrivacyFilter_node1703687163817)
 
 job.commit()
